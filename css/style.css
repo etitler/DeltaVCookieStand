@@ -4,8 +4,6 @@ body{
 header{
   background-color:#3b5998;
   padding:40px;
-}
-h1{
   color:white;
   font-size:60px;
 }
@@ -15,13 +13,12 @@ section{
   border:2px solid black;
   box-sizing:border-box;
   float:left;
-  margin:20px 10px 100px 10px;
+  margin:20px 1% 100px 1%;
 }
 section:first-of-type{
-  margin-left:20px;
-}
-section:last-of-type{
-  margin-right:20px;
+  clear:right;
+  width:90%;
+  margin:auto;
 }
 h3{
   background-color:#8b9dc3;
