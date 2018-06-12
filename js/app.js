@@ -1,7 +1,7 @@
 "use srict";
 var hours=["6am","7am","8am","9am","10am","11am","12pm","1pm","2pm","3pm","4pm","5pm","6pm","7pm","8pm"];
 
-function tableSetup() {
+function tableHeaderSetup() {
   var thead=document.getElementById("table_head");
   var td=document.createElement("td");
   thead.appendChild(td);
@@ -55,7 +55,7 @@ StoreLocation.prototype.render=function(){
   td.textContent=salesTotal;
   locationTable.appendChild(td);
 };
-function calculateHourlySales(L1,L2,L3,L4,L5){
+function tableFooterSetup(L1,L2,L3,L4,L5){
   var dailyTotal=0;
   var locationTotal=document.getElementById("total_table");
   var td=document.createElement("td");
@@ -74,7 +74,7 @@ function calculateHourlySales(L1,L2,L3,L4,L5){
 }
 
 //Setting up table header
-tableSetup();
+tableHeaderSetup();
 
 //makes store instances
 var iowaCity1= new StoreLocation("Iowa City #1",23,65,6.3,"IC1_table");
@@ -89,7 +89,7 @@ coralville1.render();
 var northLiberty1= new StoreLocation("North Liberty #1",2,16,4.6,"NL1_table");
 northLiberty1.render();
 //sales total
-calculateHourlySales(iowaCity1,iowaCity2,iowaCity3,coralville1,northLiberty1);
+tableFooterSetup(iowaCity1,iowaCity2,iowaCity3,coralville1,northLiberty1);
 
 //replace list with table
 function storeData(location,id){
