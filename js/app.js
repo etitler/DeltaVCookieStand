@@ -2,17 +2,17 @@
 var hours=["6am","7am","8am","9am","10am","11am","12pm","1pm","2pm","3pm","4pm","5pm","6pm","7pm","8pm"];
 
 function tableHeaderSetup() {
-  var thead=document.getElementById("table_head");
-  var td=document.createElement("td");
-  thead.appendChild(td);
+  var theadRow=document.getElementById("table_head");
+  var td=document.createElement("th");
+  theadRow.appendChild(td);
   for(var i=0;i<hours.length;i++){
-    td=document.createElement("td");
+    td=document.createElement("th");
     td.textContent=hours[i];
-    thead.appendChild(td);
+    theadRow.appendChild(td);
   }
-  td=document.createElement("td");
+  td=document.createElement("th");
   td.textContent="Stores daily total";
-  thead.appendChild(td);
+  theadRow.appendChild(td);
 }
 
 function StoreLocation(storeName,minCustomers,maxCustomers,averageSales,id){
