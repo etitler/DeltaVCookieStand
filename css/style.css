@@ -4,8 +4,6 @@ body{
 header{
   background-color:#3b5998;
   padding:40px;
-}
-h1{
   color:white;
   font-size:60px;
 }
@@ -15,20 +13,19 @@ section{
   border:2px solid black;
   box-sizing:border-box;
   float:left;
-  margin:20px 10px 100px 10px;
+  margin:20px 1% 100px 1%;
 }
-section:first-of-type{
-  margin-left:20px;
-}
-section:last-of-type{
-  margin-right:20px;
+section{
+  clear:right;
+  width:90%;
+  margin:auto;
 }
 h3{
   background-color:#8b9dc3;
   font-size:24px;
   border-bottom: 2px solid black;
 }
-ul{
+ol,ul{
   padding-left:20px;
 }
 li{
@@ -37,4 +34,40 @@ li{
 footer{
   clear:both;
   Background-color:#8b9dc3;
+}
+.Layout_1{
+  width:98%;
+  margin:1%;
+  box-sizing:border-box;
+  padding:10px;    
+  clear:both;
+  
+}
+.Layout_2{
+  width:48%;
+  margin:1%;
+  box-sizing:border-box;
+  padding:10px; 
+  float:left;
+}
+.Layout_3{
+  width:31%;
+  margin:1%;
+  box-sizing:border-box;
+  padding:10px; 
+  float:left;
+}
+.Layout_4{
+  width:23%;
+  margin:1%;
+  box-sizing:border-box;
+  padding:10px; 
+  float:left;
+}
+.Layout_5{
+  width:14%;
+  margin:1%;
+  box-sizing:border-box;
+  padding:10px; 
+  float:left;
 }

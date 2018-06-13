@@ -1,96 +1,99 @@
 "use srict";
-
-var iowaCity1={
-  minCustomers: 23,
-  maxCustomers: 65,
-  averageSales: 6.3,
-  hourlyArray:[],
-  numOfCust: function(){
-    return Math.ceil(Math.random()*(iowaCity1.maxCustomers-iowaCity1.minCustomers)+iowaCity1.minCustomers);
-  },
-  cookiesPurchased: function(){
-    for(var i=0; i<15; i++){
-      iowaCity1.hourlyArray[i]= Math.floor(this.numOfCust()*iowaCity1.averageSales);
-    }
-  },
-};
-
-var iowaCity2={
-  minCustomers: 3,
-  maxCustomers: 24,
-  averageSales: 1.2,
-  hourlyArray:[],
-  numOfCust: function(){
-    return Math.ceil(Math.random()*(iowaCity2.maxCustomers-iowaCity2.minCustomers)+iowaCity2.minCustomers);
-  },
-  cookiesPurchased: function(){
-    for(var i=0; i<15; i++){
-      iowaCity2.hourlyArray[i]= Math.floor(this.numOfCust()*iowaCity2.averageSales);
-    }
-  },
-};
-
-var iowaCity3={
-  minCustomers: 11,
-  maxCustomers: 38,
-  averageSales: 3.7,
-  hourlyArray:[],
-  numOfCust: function(){
-    return Math.ceil(Math.random()*(iowaCity3.maxCustomers-iowaCity3.minCustomers)+iowaCity3.minCustomers);
-  },
-  cookiesPurchased: function(){
-    for(var i=0; i<15; i++){
-      iowaCity3.hourlyArray[i]= Math.floor(this.numOfCust()*iowaCity3.averageSales);
-    }
-  },
-};
-
-var coralville1={
-  minCustomers: 20,
-  maxCustomers: 38,
-  averageSales: 2.3,
-  hourlyArray:[],
-  numOfCust: function(){
-    return Math.ceil(Math.random()*(coralville1.maxCustomers-coralville1.minCustomers)+coralville1.minCustomers);
-  },
-  cookiesPurchased: function(){
-    for(var i=0; i<15; i++){
-      coralville1.hourlyArray[i]= Math.floor(this.numOfCust()*coralville1.averageSales);
-    }
-  },
-};
-
-var northLiberty1={
-  minCustomers: 2,
-  maxCustomers: 16,
-  averageSales: 4.6,
-  hourlyArray:[],
-  numOfCust: function(){
-    return Math.ceil(Math.random()*(northLiberty1.maxCustomers-northLiberty1.minCustomers)+northLiberty1.minCustomers);
-  },
-  cookiesPurchased: function(){
-    for(var i=0; i<15; i++){
-      northLiberty1.hourlyArray[i]= Math.floor(this.numOfCust()*northLiberty1.averageSales);
-    }
-  },
-};
-
-function simlulate() {
-  iowaCity1.numOfCust();
-  iowaCity1.cookiesPurchased();
-  iowaCity2.numOfCust();
-  iowaCity2.cookiesPurchased();
-  iowaCity3.numOfCust();
-  iowaCity3.cookiesPurchased();
-  coralville1.numOfCust();
-  coralville1.cookiesPurchased();
-  northLiberty1.numOfCust();
-  northLiberty1.cookiesPurchased();
-}
-
 var hours=["6am","7am","8am","9am","10am","11am","12pm","1pm","2pm","3pm","4pm","5pm","6pm","7pm","8pm"];
 
+function tableHeaderSetup() {
+  var theadRow=document.getElementById("table_head");
+  var td=document.createElement("th");
+  theadRow.appendChild(td);
+  for(var i=0;i<hours.length;i++){
+    td=document.createElement("th");
+    td.textContent=hours[i];
+    theadRow.appendChild(td);
+  }
+  td=document.createElement("th");
+  td.textContent="Stores daily total";
+  theadRow.appendChild(td);
+}
+
+function StoreLocation(storeName,minCustomers,maxCustomers,averageSales,id){
+  this.storeName=storeName;
+  this.minCustomers=minCustomers;
+  this.maxCustomers=maxCustomers;
+  this.averageSales=averageSales;
+  this.hourlyArray=[];
+  this.id=id;
+}
+StoreLocation.prototype.numberOfCustomers=function(){
+  return Math.ceil(Math.random()*(this.maxCustomers-this.minCustomers)+this.minCustomers);
+};
+StoreLocation.prototype.cookiesPurchased=function(){
+  for(var i=0; i<hours.length; i++){
+    this.hourlyArray[i]=Math.floor(this.numberOfCustomers()*this.averageSales);
+  }
+};
+StoreLocation.prototype.render=function(){
+  this.cookiesPurchased();
+
+  //adds storeName to table
+  var locationTable=document.getElementById(this.id);
+  var td=document.createElement("td");
+  td.textContent=this.storeName;
+  locationTable.appendChild(td);
+
+  //setup for total calculation
+  var salesTotal=0;
+  for(var i=0;i<this.hourlyArray.length; i++){
+    //adds table data to table
+    td=document.createElement("td");
+    td.textContent=this.hourlyArray[i];
+    locationTable.appendChild(td);
+    //adjust salesTotal
+    salesTotal=salesTotal+this.hourlyArray[i];
+  }
+  //adds total data to table
+  td=document.createElement("td");
+  td.textContent=salesTotal;
+  locationTable.appendChild(td);
+};
+function tableFooterSetup(L1,L2,L3,L4,L5){
+  var dailyTotal=0;
+  var locationTotal=document.getElementById("total_table");
+  var td=document.createElement("td");
+  td.textContent="Cross-store hourly total";
+  locationTotal.appendChild(td);
+  for(var i=0; i<hours.length; i++){
+    var total=L1.hourlyArray[i]+L2.hourlyArray[i]+L3.hourlyArray[i]+L4.hourlyArray[i]+L5.hourlyArray[i];
+    td=document.createElement("td");
+    td.textContent=total;
+    locationTotal.appendChild(td);
+    dailyTotal=dailyTotal+total;
+  }
+  td=document.createElement("td");
+  td.textContent=dailyTotal;
+  locationTotal.appendChild(td);
+}
+
+//Setting up table header
+tableHeaderSetup();
+
+//makes store instances
+var iowaCity1= new StoreLocation("Iowa City #1",23,65,6.3,"IC1_table");
+//renders table data
+iowaCity1.render();
+var iowaCity2= new StoreLocation("Iowa City #2",3,24,1.2,"IC2_table");
+iowaCity2.render();
+var iowaCity3= new StoreLocation("Iowa City #3",11,38,3.7,"IC3_table");
+iowaCity3.render();
+var coralville1= new StoreLocation("Coralville #1",20,38,2.3,"CV1_table");
+coralville1.render();
+var northLiberty1= new StoreLocation("North Liberty #1",2,16,4.6,"NL1_table");
+northLiberty1.render();
+//sales total
+tableFooterSetup(iowaCity1,iowaCity2,iowaCity3,coralville1,northLiberty1);
+
+//replace list with table
 function storeData(location,id){
+  location.cookiesPurchased();
   var locationlist=document.getElementById(id);
   for(var liIndex=0; liIndex<location.hourlyArray.length; liIndex++){
     var li=document.createElement("li");
@@ -100,7 +103,7 @@ function storeData(location,id){
   }
 }
 
-simlulate();
+
 storeData(iowaCity1,"IC1");
 storeData(iowaCity2,"IC2");
 storeData(iowaCity3,"IC3");
