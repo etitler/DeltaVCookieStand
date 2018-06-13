@@ -16,13 +16,12 @@ function tableHeaderSetup() {
   theadRow.appendChild(td);
 }
 
-function StoreLocation(storeName,minCustomers,maxCustomers,averageSales,id){
+function StoreLocation(storeName,minCustomers,maxCustomers,averageSales){
   this.storeName=storeName;
   this.minCustomers=minCustomers;
   this.maxCustomers=maxCustomers;
   this.averageSales=averageSales;
   this.hourlyArray=[];
-  this.id=id;
 }
 StoreLocation.prototype.numberOfCustomers=function(){
   return Math.ceil(Math.random()*(this.maxCustomers-this.minCustomers)+this.minCustomers);
@@ -32,14 +31,15 @@ StoreLocation.prototype.cookiesPurchased=function(){
     this.hourlyArray[i]=Math.floor(this.numberOfCustomers()*this.averageSales);
   }
 };
-StoreLocation.prototype.render=function(){
+StoreLocation.prototype.renderTable=function(){
   this.cookiesPurchased();
 
   //adds storeName to table
-  var locationTable=document.getElementById(this.id);
+  var tableLocation=document.getElementById("tableLocation");
+  var tr=document.createElement("tr");
   var td=document.createElement("td");
   td.textContent=this.storeName;
-  locationTable.appendChild(td);
+  tr.appendChild(td);
 
   //setup for total calculation
   var salesTotal=0;
@@ -47,31 +47,35 @@ StoreLocation.prototype.render=function(){
     //adds table data to table
     td=document.createElement("td");
     td.textContent=this.hourlyArray[i];
-    locationTable.appendChild(td);
+    tr.appendChild(td);
     //adjust salesTotal
     salesTotal=salesTotal+this.hourlyArray[i];
   }
   //adds total data to table
   td=document.createElement("td");
   td.textContent=salesTotal;
-  locationTable.appendChild(td);
+  tr.appendChild(td);
+  console.log(tr);
+  tableLocation.appendChild(tr);
 };
 function tableFooterSetup(L1,L2,L3,L4,L5){
   var dailyTotal=0;
-  var locationTotal=document.getElementById("total_table");
+  var tableLocation=document.getElementById("tableLocation");
+  var tr=document.createElement("tr");
   var td=document.createElement("td");
   td.textContent="Cross-store hourly total";
-  locationTotal.appendChild(td);
+  tr.appendChild(td);
   for(var i=0; i<hours.length; i++){
     var total=L1.hourlyArray[i]+L2.hourlyArray[i]+L3.hourlyArray[i]+L4.hourlyArray[i]+L5.hourlyArray[i];
     td=document.createElement("td");
     td.textContent=total;
-    locationTotal.appendChild(td);
+    tr.appendChild(td);
     dailyTotal=dailyTotal+total;
   }
   td=document.createElement("td");
   td.textContent=dailyTotal;
-  locationTotal.appendChild(td);
+  tr.appendChild(td);
+  tableLocation.appendChild(tr);
 }
 function handleSubmit(){
   event.preventDefault();
@@ -86,17 +90,17 @@ function handleSubmit(){
 tableHeaderSetup();
 
 //makes store instances
-var iowaCity1= new StoreLocation("Iowa City #1",23,65,6.3,"IC1_table");
+var iowaCity1= new StoreLocation("Iowa City #1",23,65,6.3);
 //renders table data
-iowaCity1.render();
-var iowaCity2= new StoreLocation("Iowa City #2",3,24,1.2,"IC2_table");
-iowaCity2.render();
-var iowaCity3= new StoreLocation("Iowa City #3",11,38,3.7,"IC3_table");
-iowaCity3.render();
-var coralville1= new StoreLocation("Coralville #1",20,38,2.3,"CV1_table");
-coralville1.render();
-var northLiberty1= new StoreLocation("North Liberty #1",2,16,4.6,"NL1_table");
-northLiberty1.render();
+iowaCity1.renderTable();
+var iowaCity2= new StoreLocation("Iowa City #2",3,24,1.2);
+iowaCity2.renderTable();
+var iowaCity3= new StoreLocation("Iowa City #3",11,38,3.7);
+iowaCity3.renderTable();
+var coralville1= new StoreLocation("Coralville #1",20,38,2.3);
+coralville1.renderTable();
+var northLiberty1= new StoreLocation("North Liberty #1",2,16,4.6);
+northLiberty1.renderTable();
 //sales total
 tableFooterSetup(iowaCity1,iowaCity2,iowaCity3,coralville1,northLiberty1);
 
