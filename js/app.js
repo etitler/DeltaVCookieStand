@@ -1,4 +1,5 @@
 "use srict";
+
 var hours=["6am","7am","8am","9am","10am","11am","12pm","1pm","2pm","3pm","4pm","5pm","6pm","7pm","8pm"];
 
 function tableHeaderSetup() {
@@ -72,7 +73,15 @@ function tableFooterSetup(L1,L2,L3,L4,L5){
   td.textContent=dailyTotal;
   locationTotal.appendChild(td);
 }
-
+function handleSubmit(){
+  event.preventDefault();
+  var storeName=event.target.storeName.value;
+  var minCustomers=event.target.minCustomers.value;
+  var maxCustomers=event.target.maxCustomers.value;
+  var averageSales=event.target.averageSales.value;
+  var newStoreLocation=new StoreLocation(storeName,minCustomers,maxCustomers,averageSales,"test");
+  console.log(newStoreLocation);
+}
 //Setting up table header
 tableHeaderSetup();
 
@@ -109,3 +118,6 @@ storeData(iowaCity2,"IC2");
 storeData(iowaCity3,"IC3");
 storeData(coralville1,"CV1");
 storeData(northLiberty1,"NL1");
+
+var form=document.querySelector("form");
+form.addEventListener("submit",handleSubmit);
