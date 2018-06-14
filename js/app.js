@@ -1,7 +1,7 @@
 "use srict";
 
 var hours=["6am","7am","8am","9am","10am","11am","12pm","1pm","2pm","3pm","4pm","5pm","6pm","7pm","8pm"];
-var store=[];
+var storeSales=[];
 
 function tableHeaderSetup() {
   var theadRow=document.getElementById("table_head");
@@ -57,11 +57,10 @@ StoreLocation.prototype.renderTable=function(){
   td.textContent=salesTotal;
   tr.appendChild(td);
   tableLocation.appendChild(tr);
-  this.pushName();
-  console.log(store);
+  this.pushSales();
 };
-StoreLocation.prototype.pushName=function(){
-  store.push(this.hourlyArray);
+StoreLocation.prototype.pushSales=function(){
+  storeSales.push(this.hourlyArray);
 };
 function tableFooterSetup(){
   var dailyTotal=0;
@@ -72,8 +71,8 @@ function tableFooterSetup(){
   tr.appendChild(td);
   for(var i=0; i<hours.length; i++){
     var total=0;
-    for(var j=0; j<store.length;j++){
-      total=total+(store[j][i]);
+    for(var j=0; j<storeSales.length;j++){
+      total=total+(storeSales[j][i]);
     }
     td=document.createElement("td");
     td.textContent=total;
