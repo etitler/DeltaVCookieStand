@@ -8,65 +8,34 @@
     <header>
       <h1>Storewide sales report</h1>
     </header>
-    <section>
+    <section class="Layout_1">
+      <h3>Make a new Store<!--<button>New Store?</button>--></h3>
+      <form>
+        <fieldset>
+          <label>Store Name:<input type="text" name="storeName"/></label>
+          <label>Maximum number of Customers/hour:<input type="text" name="maxCustomers"/></label>
+          <label>Minimum number of Customers/hour:<input type="text"name="minCustomers"/></label>
+          <label>Average Sales:<input type="text"name="averageSales"/></label>
+          <input type="submit" value="Create Store"/>
+        </fieldset>
+      </form>
+    </section>
+    <section class="Layout_1">
       <table>
         <thead>
           <tr id="table_head">
 
           </tr>
         </thead>
-        <tbody>
-          <tr id="IC1_table">
-
-          </tr>
-          <tr id="IC2_table">
-
-          </tr>
-          <tr id="IC3_table">
-
-          </tr>
-          <tr id="CV1_table">
-
-          </tr>
-          <tr id="NL1_table">
-
-          </tr>
-          <tr id="total_table">
-
-          </tr>
+        <tbody id="tableLocation">
         </tbody>
+        <tfoot id="footLocation">
+
+        </tfoot>
       </table>
     </section>
-    <section>
-      <h3>Iowa City #1</h3>
-      <ul id="IC1">
-
-      </ul>
-    </section>
-    <section>
-      <h3>Iowa City #2</h3>
-      <ul id="IC2">
-
-      </ul>
-    </section>
-    <section>
-      <h3>Iowa City #3</h3>
-      <ul id="IC3">
-
-      </ul>
-    </section>
-    <section>
-      <h3>Coralville</h3>
-      <ul id="CV1">
-
-      </ul>
-    </section>
-    <section>
-      <h3>North Liberty</h3>
-      <ul id="NL1">
-
-      </ul>
-    </section>
+    <div id="listLocation">
+    </div>
     <footer>
       <nav>
         <a href="index.html">Site's Home page</a>

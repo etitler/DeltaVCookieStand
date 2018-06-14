@@ -15,11 +15,6 @@ section{
   float:left;
   margin:20px 1% 100px 1%;
 }
-section{
-  clear:right;
-  width:90%;
-  margin:auto;
-}
 h3{
   background-color:#8b9dc3;
   font-size:24px;
