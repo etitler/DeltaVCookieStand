@@ -59,6 +59,26 @@ StoreLocation.prototype.renderTable=function(){
   tableLocation.appendChild(tr);
   this.pushSales();
 };
+StoreLocation.prototype.renderList=function(){
+  var listLocation=document.getElementById("listLocation");
+  var sectionList=document.createElement("section");
+  var h3=document.createElement("h3");
+  h3.textContent=this.storeName;
+  sectionList.appendChild(h3);
+  var ul=document.createElement("ul");
+  for(var i=0;i<this.hourlyArray.length;i++){
+    var li=document.createElement("li");
+    li.textContent=this.hourlyArray[i];
+    ul.appendChild(li);
+  }
+  sectionList.appendChild(ul);
+  console.log(sectionList);
+  listLocation.appendChild(sectionList);
+};
+StoreLocation.prototype.renderBoth=function(){
+  this.renderTable();
+  this.renderList();
+};
 StoreLocation.prototype.pushSales=function(){
   storeSales.push(this.hourlyArray);
 };
@@ -92,7 +112,7 @@ function handleSubmit(){
   var maxCustomers=event.target.maxCustomers.value;
   var averageSales=event.target.averageSales.value;
   var newStoreLocation=new StoreLocation(storeName,minCustomers,maxCustomers,averageSales,"test");
-  newStoreLocation.renderTable();
+  newStoreLocation.renderBoth();
   document.querySelector("tfoot").innerHTML=" ";
   tableFooterSetup();
 }
@@ -103,15 +123,15 @@ tableHeaderSetup();
 //makes store instances
 var iowaCity1= new StoreLocation("Iowa City #1",23,65,6.3);
 //renders table data
-iowaCity1.renderTable();
+iowaCity1.renderBoth();
 var iowaCity2= new StoreLocation("Iowa City #2",3,24,1.2);
-iowaCity2.renderTable();
+iowaCity2.renderBoth();
 var iowaCity3= new StoreLocation("Iowa City #3",11,38,3.7);
-iowaCity3.renderTable();
+iowaCity3.renderBoth();
 var coralville1= new StoreLocation("Coralville #1",20,38,2.3);
-coralville1.renderTable();
+coralville1.renderBoth();
 var northLiberty1= new StoreLocation("North Liberty #1",2,16,4.6);
-northLiberty1.renderTable();
+northLiberty1.renderBoth();
 //sales total
 tableFooterSetup();
 
