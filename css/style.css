@@ -1,11 +1,13 @@
 body{
-  background-color:#f7f7f7
+  background-color:#f7f7f7;
+  font-family: 'Slabo 27px', serif;
 }
 header{
   background-color:#3b5998;
   padding:40px;
   color:white;
-  font-size:60px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
 section{
   background-color:	#dfe3ee;
@@ -15,54 +17,96 @@ section{
   float:left;
   margin:20px 1% 100px 1%;
 }
+h1{
+  font-size:32px;
+}
+h2{
+  font-size:24px;
+}
 h3{
   background-color:#8b9dc3;
-  font-size:24px;
+  font-size:20.8px;
   border-bottom: 2px solid black;
+  font-weight: bold;
+}
+ol{
+  list-style-type:decimal;
 }
 ol,ul{
   padding-left:20px;
 }
-li{
-  list-style:circle;
+ul li{
+  list-style:disc;
 }
 footer{
   clear:both;
   Background-color:#8b9dc3;
 }
-.Layout_1{
+.layout_1{
   width:98%;
   margin:1%;
-  box-sizing:border-box;
-  padding:10px;    
+  box-sizing:border-box;   
   clear:both;
-  
 }
-.Layout_2{
+.layout_2{
   width:48%;
   margin:1%;
   box-sizing:border-box;
-  padding:10px; 
   float:left;
 }
-.Layout_3{
+.layout_3{
   width:31%;
   margin:1%;
   box-sizing:border-box;
-  padding:10px; 
   float:left;
 }
-.Layout_4{
+.layout_4{
   width:23%;
   margin:1%;
   box-sizing:border-box;
-  padding:10px; 
   float:left;
 }
-.Layout_5{
+.layout_5{
   width:14%;
   margin:1%;
   box-sizing:border-box;
-  padding:10px; 
   float:left;
+}
+.fam img{
+  float:left;
+  display:inline-block;
+  width:33%;
+}
+.fam article{
+  width:66%;
+  float: right;
+  display:inline-block;
+}
+.merch article{
+  float:left;
+  display: inline-block;
+  width:50%;
+  box-sizing: border-box;
+  padding:10px;
+}
+.merch img{
+  float: left;
+  display: inline-block;
+  width:25%;
+}
+.bold{
+  font-weight:bold;
+}
+.locations li{
+  padding:9px;
+}
+.cookies{
+  width:33%;
+  box-sizing: border-box;
+  border:2px solid black;
+  float:left;
+  display:inline-block;
+}
+table{
+  font-family: 'Lato', sans-serif;
 }
