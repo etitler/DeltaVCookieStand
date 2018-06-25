@@ -135,26 +135,5 @@ northLiberty1.renderBoth();
 //sales total
 tableFooterSetup();
 
-
-
-//move this to render
-function storeData(location,id){
-  location.cookiesPurchased();
-  var locationlist=document.getElementById(id);
-  for(var liIndex=0; liIndex<location.hourlyArray.length; liIndex++){
-    var li=document.createElement("li");
-    var listString=hours[liIndex]+": "+location.hourlyArray[liIndex]+" cookies.";
-    li.textContent=listString;
-    locationlist.appendChild(li);
-  }
-}
-
-
-storeData(iowaCity1,"IC1");
-storeData(iowaCity2,"IC2");
-storeData(iowaCity3,"IC3");
-storeData(coralville1,"CV1");
-storeData(northLiberty1,"NL1");
-
 var form=document.querySelector("form");
 form.addEventListener("submit",handleSubmit);
