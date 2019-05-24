@@ -1,2 +1,2 @@
 # DeltaVCookieStand
-This is a faux Cookie buisness
+This is a faux Cookie business
